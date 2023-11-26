@@ -1,7 +1,6 @@
 import React from 'react'
 
 const CountBox = ({ title, value, isFinish }) => {
-  console.log(isFinish)
   return (
     <div className="flex flex-col items-center w-[150px] ">
       {isFinish ? (
