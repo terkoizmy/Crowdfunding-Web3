@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { tagType, thirdweb } from '../assets'
+import { tagType, thirdweb, checklist } from '../assets'
 import { daysLeft } from '../utils'
 
 const FundCard = ({owner, title, description, target, deadline, amountCollected, image, handleClick}) => {
@@ -13,11 +13,15 @@ const FundCard = ({owner, title, description, target, deadline, amountCollected,
             <img src={image} alt="fund" className="w-full h-[158px] object-cover rounded-[15px]" />
 
             <div className='flex flex-col p-4' >
-                <div className='flex flex-row items-center mb-[18px] '>
-                    <img src={tagType} alt='tag' className='w-[17px] h-[17px] object-contain '  />
-                    <p className='ml-[12px] mt-[2px] font-epilogue font-medium text-[12px] text-[#808191] '>
-                        Education
-                    </p>
+                <div className='flex flex-row justify-between items-center mb-[10px] '>
+                    <div className='flex flex-row items-center mb-[18px]'>
+                        <img src={tagType} alt='tag' className='w-[17px] h-[17px] object-contain '  />
+                        <p className='ml-[12px] mt-[2px] font-epilogue font-medium text-[12px] text-[#808191] '>
+                            Education
+                        </p>
+                    </div>
+                    {amountCollected >= target && <img src={checklist} className='w-[30px] h-[30px] object-contain ' />}
+                    
                 </div>
 
                 <div className='block'>
