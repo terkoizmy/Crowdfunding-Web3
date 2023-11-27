@@ -152,12 +152,25 @@ const CampaignDetails = () => {
                 <p className="mt-[20px] font-epilogue font-normal leading-[22px] text-[#808191]">Support the project for no reward, just because it speaks to you.</p>
               </div>
 
-              <CustomButton 
+              { state.target <= state.amountCollected ?(
+                <CustomButton 
+                btnType="button"
+                title="Fund Campaign"
+                styles="w-full bg-[#53535e]"
+                handleClick={handleDonate}
+                disabled={true}
+                />
+                
+              ) : (
+                <CustomButton 
                 btnType="button"
                 title="Fund Campaign"
                 styles="w-full bg-[#8c6dfd]"
                 handleClick={handleDonate}
-              />
+                />
+              )}
+
+              
             </div>
           </div>
 
