@@ -1,5 +1,12 @@
 import React, { useContext, createContext, useEffect } from 'react'
-import { useAddress, useContract, useMetamask, useContractWrite, useContractRead } from '@thirdweb-dev/react'
+import {
+    useAddress, 
+    useContract, 
+    useMetamask, 
+    useContractWrite,
+    ChainId,
+    useNetwork,
+    useNetworkMismatch} from '@thirdweb-dev/react'
 import { ethers } from 'ethers'
 
 const StateContext = createContext();
@@ -10,6 +17,16 @@ export const StateContextProvider = ({ children }) => {
 
     const address = useAddress();
     const connect = useMetamask();
+    const [, switchNetwork] = useNetwork();
+    const isWrongNetwork = useNetworkMismatch()
+
+    useEffect(() => {
+      if(isWrongNetwork && switchNetwork){
+        switchNetwork(ChainId.Goerli)
+      }
+    }, [address, isWrongNetwork, switchNetwork])
+    
+
     
     const publishCampaign = async (form) => {
         try{
